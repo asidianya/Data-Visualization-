@@ -11,6 +11,9 @@ We're are loading the data from last year's Halloween TidyTuesday dataset. You c
 
 ```{r}
 library(tidyverse)
+defaultW <- getOption("warn") 
+
+options(warn = -1) 
 
 horror_movies <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-10-22/horror_movies.csv")
 ```
@@ -35,6 +38,9 @@ Among the variables in `horror_movies` are:
 ```{r}
 #install.packages("lubridate")
 library(lubridate)
+defaultW <- getOption("warn") 
+
+options(warn = -1) 
 
 attach(horror_movies)
 budget_nm <- gsub("[[:punct:]]","",budget)
@@ -115,9 +121,12 @@ Have a look at the descriptions for each of the variables. https://github.com/rf
 
 3.    How many levels does `release_country` variable have?  Glimpse at  the`release_country` to find out.
 
-```{r}
-glimpse(language)
-language=as.factor(release_country)
+```{r, message=FALSE}
+defaultW <- getOption("warn") 
+
+options(warn = -1) 
+#glimpse(language)
+#language=as.factor(release_country)
 #levels(release_country)
 ```
 
@@ -257,14 +266,15 @@ Question:
 
 Code adapted from https://twitter.com/committedtotape/status/1187109093003223040
 
-```{r}
+```{r, message=FALSE}
 #install.packages("extrafont")
 library(extrafont)
+defaultW <- getOption("warn") 
+
+options(warn = -1) 
+
 #extrafont::loadfonts(device="win")
 #extrafont::fonttable()
-library(tidyverse)
-#install.packages("lubridate")
-library(lubridate)
 
 #movie count by each month/year
 #warning regarding some dates not parsed as they only contain the year of release, not the full date
