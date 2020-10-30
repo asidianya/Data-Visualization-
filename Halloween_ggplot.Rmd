@@ -50,7 +50,7 @@ budget_nm <- as.numeric(budget_nm)
 budget_MU <- substr(budget,1,1)
 
 log_budget_nm <- log(budget_nm)
-hm<-horror_movies %>% add_column(budget_nm, log_budget_nm)
+horror_temp<-horror_movies %>% add_column(budget_nm, log_budget_nm)
 
 
 horror_temp <- horror_temp[which(budget_MU=="$"),]
