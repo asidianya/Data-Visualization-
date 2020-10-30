@@ -266,6 +266,8 @@ Question:
 
 Code adapted from https://twitter.com/committedtotape/status/1187109093003223040
 
+To complete the graphic you need to download [Ghostscript and Extrafont](https://cran.r-project.org/web/packages/extrafont/README.html)
+
 ```{r, message=FALSE}
 #install.packages("extrafont")
 library(extrafont)
@@ -331,7 +333,17 @@ theme_void()+
 
 ggsave("horror movie releases.png", width=8, height=8)
 ```
-```
+
+##Resources 
+
+We have attached a link to the free online version of the ggplot2 text book here:
+
+1. [ggplot2 handbook](https://ggplot2-book.org/introduction.html)
+ 
+We have attached slides provided by Liza about working with colour palettes in R: 
+
+2. [Colour palattes](https://www.dataembassy.co.nz/Liza-colours-in-R#1)
+
 
 
     
