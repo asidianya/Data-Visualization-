@@ -10,12 +10,14 @@ output: html_notebook
 We're are loading the data from last year's Halloween TidyTuesday dataset. You can see the information about this dataset here: https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-10-22. 
 
 ```{r}
+#install.packages("tidyverse")
 library(tidyverse)
 defaultW <- getOption("warn") 
 
 options(warn = -1) 
 
 horror_movies <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-10-22/horror_movies.csv")
+glimpse(horror_movies)
 ```
 
 
@@ -48,6 +50,7 @@ budget_nm <- as.numeric(budget_nm)
 
 #substr(variable, start, stop) is a way to extract the dollar units from the budget
 budget_MU <- substr(budget,1,1)
+budget_MU
 
 log_budget_nm <- log(budget_nm)
 horror_temp<-horror_movies %>% add_column(budget_nm, log_budget_nm)
@@ -111,7 +114,7 @@ library(tidyverse)
 glimpse(horror_movies)
 #view(horror_movies)
 
-#?help(mpg)
+#?help(lm)
 ```
 Have a look at the descriptions for each of the variables. https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-10-22
 
@@ -133,7 +136,7 @@ options(warn = -1)
 
 4. Let's  make a boxplot for 'release date' versus 'frequency' per month.
 ```{r}
-
+library(lubridate)
 horror_movies <- horror_movies %>% 
   filter(!is.na(release_date)) %>% 
   mutate(month = month(dmy(release_date), label=T, abbr=F)) %>% 
@@ -162,6 +165,8 @@ horror_movies_month = horror_movies %>%
   
 ggplot(data=horror_movies_month, aes(x=month, y=percentage, fill=reorder(month, total_country, sum))) + geom_boxplot()
 
+help("reorder")
+
 ```
 
      
@@ -171,7 +176,7 @@ ggplot(data=horror_movies_month, aes(x=month, y=percentage, fill=reorder(month, 
 
 ```{r}
 horror_movies_spain <- horror_movies_month %>% filter(release_country == "Spain")
-glimpse(horror_movies_spain)
+glimpse(horror_movies_spain)  
 ```
 
 
@@ -208,7 +213,7 @@ movies <- movies %>% mutate(years=ifelse(is.na(release_parsed),
 budget_MU <- substr(movies$budget,1,1)
 
 
-movies_h<- movies[which(budget_unit=="$"),]
+movies_h<- movies[which(budget_MU=="$"),]
 
 movies_h %>% 
   group_by(month, movie_rating) %>% 
